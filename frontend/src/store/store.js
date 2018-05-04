@@ -16,10 +16,14 @@ const state = {
   isLoggedIn: false,
   token: '',
   user: {},
+  eventList: [],
+  mentorTeams: [],
 }
 
 const getters = {
   isLoggedIn: (state) => state.isLoggedIn,
+  events: (state) => state.eventList,
+  mentorTeamList: (state) => state.mentorTeams,
 }
 
 const mutations = {
@@ -35,6 +39,10 @@ const mutations = {
     localStorage.clear();
     router.replace('/login');
   },
+  events: (state, payload) => {
+    state.eventList = payload;
+  },
+  mentorTeams: (state, payload) => state.mentorTeams = payload,
 }
 
 const actions = {
@@ -91,6 +99,22 @@ const actions = {
   logout: (context) => {
     localStorage.removeItem('token');
     context.commit('logOut');
+  },
+  getEvents: (context) => {
+    /* eslint-disable*/
+    axios.get('http://127.0.0.1:5000/event')
+      .then((response) => {
+        console.log(response.data);
+        context.commit('events', response.data.events)
+      })
+  },
+  getMentorTeams: (context) => {
+    /* eslint-disable*/
+    axios.get('http://127.0.0.1:5000/mentors')
+      .then((response) => {
+        console.log(response.data);
+        context.commit('mentorTeams', response.data.mentors)
+      })
   },
 }
 

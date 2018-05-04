@@ -1,6 +1,7 @@
 import Vue from 'vue';
 import Router from 'vue-router';
 import Home from '@/components/Home';
+import Mentor from '@/components/views/Mentor';
 import Auth from '@/components/auth/Authentication';
 import Confirm from '@/components/auth/Confirm';
 import PasswordReset from '@/components/auth/PasswordReset';
@@ -16,6 +17,11 @@ const router = new Router({
       path: '/home',
       name: 'home',
       component: Home,
+    },
+    {
+      path: '/mentor',
+      name: 'mentor',
+      component: Mentor,
     },
     {
       path: '/login',

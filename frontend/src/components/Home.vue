@@ -6,9 +6,19 @@
           <div class="column"></div>
           <div class="column is-half">
             <div class="card">
-              <div class="card-content">
-                Please select your Role
-                ## choose your event (admin create new event)
+              <div class="card-content has-text-centered">
+                  <div class="field">
+                    <label class="label">Please select your Role and Select the Event</label>
+                    <div class="control has-text-centered">
+                      <div class="select" v-model="events">
+                        <select>
+                          <option v-for="event in events">
+                            {{ event.name }}
+                            </option>
+                        </select>
+                      </div>
+                    </div>
+                  </div>
               </div>
             </div>
           </div>
@@ -20,13 +30,19 @@
       <div class="container">
         <div class="columns">
           <div class="column">
-            <card></card>
+            <router-link to="/judge">
+              <card>I am a Judge!</card>
+            </router-link>
           </div>
           <div class="column">
-            <card></card>
+            <router-link to="/mentor">
+              <card>I am a Mentor!</card>
+            </router-link>
           </div>
           <div class="column">
-            <card></card>
+            <router-link to="/admin">
+              <card>I am a Admin!</card>
+            </router-link>
           </div>
         </div>
       </div>
@@ -34,11 +50,28 @@
   </div>
 </template>
 <script>
+  // import moment from 'moment';
+  import { mapActions, mapGetters } from 'vuex';
   import card from './parts/Card';
 
   export default {
+    data() {
+      return {};
+    },
     components: {
       card,
+    },
+    computed: {
+      ...mapGetters(['events']),
+      events() {
+        return this.$store.getters.events;
+      },
+    },
+    methods: {
+      ...mapActions(['getEvents']),
+    },
+    created() {
+      this.getEvents();
     },
   };
 </script>

@@ -1,7 +1,7 @@
 import { ensureUser } from '../../middleware/validators'
-import * as mentors from './controller'
+import * as event from './controller'
 
-export const baseUrl = '/mentors'
+export const baseUrl = '/event'
 
 export default [
   // {
@@ -17,7 +17,7 @@ export default [
     route: '/',
     handlers: [
       // ensureUser,
-      mentors.getMentors
+      event.getEvents
     ]
   },
 ]
