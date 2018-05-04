@@ -13,7 +13,6 @@ module.exports = function (referrer, jwt, username) {
   const text = `click here to confirm your account:\n ${referrer}/#/confirm?token=${jwt}`
   const content = new helper.Content('text/plain', text);
   const mail = new helper.Mail(fromEmail, subject, toEmail, content);
-   
 
   const sg = require('sendgrid')(process.env.SENDGRID_API_KEY);
   const request = sg.emptyRequest({

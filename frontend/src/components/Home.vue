@@ -1,107 +1,46 @@
 <template>
   <div>
-    <div class="columns">
-      <aside class="column is-2 aside hero is-fullheight is-hidden-mobile">
-          <div>
-            <div class="compose has-text-centered">
-              <a class="button is-danger is-block is-bold is-expaned">
-                <span class="icon">
-                  <i class="fa fa-upload"></i>
-                </span>&nbsp;&nbsp;
-                Upload
-              </a>
-            </div>
-            <div class="main">
-              <a href="#" class="item active">
-                <span class="icon">
-                  <i class="fa fa-home"></i>
-                </span>
-                <span class="name">Home</span>
-              </a>
-              <a href="#" class="item"><span class="icon"><i class="fa fa-star"></i></span><span class="name">Starred</span></a>
-              <a href="#" class="item"><span class="icon"><i class="fa fa-envelope-o"></i></span><span class="name">Sent Mail</span></a>
-              <a href="#" class="item"><span class="icon"><i class="fa fa-folder-o"></i></span><span class="name">Folders</span></a>
-            </div>
-          </div>
-      </aside>
-      <div class="column is-4 messages hero is-fullheight" id="message-feed">
-        <div class="action-buttons">
-          <div class="control is-grouped">
-            <a class="button is-small"><i class="fa fa-chevron-down"></i></a>
-            <a class="button is-small"><i class="fa fa-refresh"></i></a>
-          </div>
-          <div class="control is-grouped">
-            <a class="button is-small"><i class="fa fa-inbox"></i></a>
-            <a class="button is-small"><i class="fa fa-exclamation-circle"></i></a>
-            <a class="button is-small"><i class="fa fa-trash-o"></i></a>
-          </div>
-          <div class="control is-grouped">
-            <a class="button is-small"><i class="fa fa-folder"></i></a>
-            <a class="button is-small"><i class="fa fa-tag"></i></a>
-          </div>
-          <!--<div class="control is-grouped pg">-->
-            <!--<div class="title"></div>-->
-            <!--<a class="button is-link"><i class="fa fa-chevron-left"></i></a>-->
-            <!--<a class="button is-link"><i class="fa fa-chevron-right"></i></a>-->
-          <!--</div>-->
-        </div>
-
-        <div class="inbox-messages" id="inbox-messages">
-          <div class="card">
-            <div class="card-content">
-              <div class="msg-header">
-                <span class="msg-from"><small>From: {{ 'person' }}</small></span>
-                <span class="msg-timestamp"></span>
-                <span class="msg-attachment"><i class="fa fa-paperclip"></i></span>
-              </div>
-              <div class="msg-subject">
-                <span class="msg-subject"><strong id="fake-subject-1">{{ 'msg.subject' }}</strong></span>
-              </div>
-              <div class="msg-snippet">
-                <p id="fake-snippet-1">{{ 'msg.snippet' }}</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="column is-6 message hero is-fullheight" id="message-pane">
-        <div class="box message-preview">
-          <div class="top">
-            <div class="avatar">
-              <img src="https://placehold.it/128x128">
-            </div>
-            <div class="address">
-              <div class="name">John Smith</div>
-              <div class="email">someone@gmail.com</div>
-            </div>
-            <hr>
-            <div class="content">
-              Congrats! you made it in. woot :)<br>
-              now do something useful with all of this power
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <footer class="footer">
+    <section class="section">
       <div class="container">
-        <div class="content has-text-centered">
-          <p>
-            <strong>Bulma Templates</strong> by <a href="https://github.com/dansup">Daniel Supernault</a>. The source code is licensed
-            <a href="http://opensource.org/licenses/mit-license.php">MIT</a>.
-          </p>
-          <p>
-            <a class="icon" href="https://github.com/dansup/bulma-templates">
-              <i class="fa fa-github"></i>
-            </a>
-          </p>
+        <div class="columns">
+          <div class="column"></div>
+          <div class="column is-half">
+            <div class="card">
+              <div class="card-content">
+                Please select your Role
+                ## choose your event (admin create new event)
+              </div>
+            </div>
+          </div>
+          <div class="column"></div>
         </div>
       </div>
-    </footer>
+    </section>
+    <section class="section">
+      <div class="container">
+        <div class="columns">
+          <div class="column">
+            <card></card>
+          </div>
+          <div class="column">
+            <card></card>
+          </div>
+          <div class="column">
+            <card></card>
+          </div>
+        </div>
+      </div>
+    </section>
   </div>
 </template>
 <script>
-  export default {};
+  import card from './parts/Card';
+
+  export default {
+    components: {
+      card,
+    },
+  };
 </script>
 <style>
   html,body {
@@ -111,38 +50,7 @@
   height: 100%;
   background-color: #fff;
 }
-.nav.is-dark {
-  background-color: #232B2D;
-  color: #F6F7F7;
-}
-.nav.is-dark .nav-item a, .nav.is-dark a.nav-item {
-    color: #F6F7F7;
-}
-.nav.is-dark .nav-item a.button.is-default {
-    color: #F6F7F7;
-    background-color: transparent;
-    border-width: 2px;
-}
-.nav.menu {
-  border-bottom: 1px solid #e1e1e1;
-}
-.nav.menu .nav-item .icon-btn {
-  border: 3px solid #B7C6C9;
-  border-radius: 90px;
-  padding: 5px 7px;
-  color: #B7C6C9;
-}
-.nav.menu .nav-item.is-active .icon-btn {
-  color: #2EB398;
-  border: 3px solid #2EB398;
-}
-.nav.menu .nav-item .icon-btn .fa {
-  font-size: 20px;
-  color: #B7C6C9;
-}
-.nav.menu .nav-item.is-active .icon-btn .fa {
-  color: #2EB398;
-}
+
 .aside {
   display:block;
   background-color: #F9F9F9;
