@@ -47,29 +47,32 @@
                     </tr>
                   </thead>
                   <tbody>
-                    <tr v-for="student in students">
+                    <tr v-for="(student, index) in students">
                       <td>
                         <div class="field">
                           <div class="control">
-                            <input class="input" type="text">
+                            <input class="input" type="text" v-model="students[index].name">
                           </div>
                         </div>
                       </td>
                       <td>
                         <div class="field">
                           <div class="control">
-                            <input class="input" type="text">
+                            <input class="input" type="text" v-model="students[index].rating">
                           </div>
                         </div>
                       </td>
                       <td>
                         <div class="is-pulled-right" style="padding:5px">
-                          <span class="delete"></span>
+                          <span class="delete" @click="removeRating(index)"></span>
                         </div>
                       </td>
                     </tr>
                   </tbody>
                 </table>
+                <br>
+                <button class="button is-primary is-pulled-right">Save Scores</button>
+                <br>
               </div>
             </div>
           </div>
@@ -94,6 +97,9 @@
     },
     methods: {
       ...mapActions(['getMentorTeams']),
+      removeRating(index) {
+        this.students.splice(index, 1);
+      },
     },
     mounted() {
       this.getMentorTeams();

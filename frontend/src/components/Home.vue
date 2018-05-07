@@ -41,7 +41,7 @@
           </div>
           <div class="column">
             <router-link to="/admin">
-              <card>I am a Admin!</card>
+              <card>See the Results!</card>
             </router-link>
           </div>
         </div>

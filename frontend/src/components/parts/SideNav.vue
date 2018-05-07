@@ -11,27 +11,31 @@
         </a> -->
       </div>
       <div class="main">
-        <a href="#" class="item active">
+        <router-link to="/home" class="item">
           <span class="icon">
             <i class="fa fa-home"></i>
           </span>
           <span class="name">Home</span>
-        </a>
-        <a href="#" class="item">
+        </router-link>
+        <router-link to="/admin" class="item">
           <span class="icon">
-            <i class="fa fa-star"></i></span>
+            <i class="fa fa-cogs"></i>
+          </span>
           <span class="name">Admin</span>
-        </a>
-        <a href="#" class="item">
+        </router-link>
+
+        <router-link to="/mentor" class="item">
           <span class="icon">
             <i class="fa fa-envelope-o"></i>
-          </span><span class="name">Mentors</span>
-        </a>
-        <a href="#" class="item">
+          </span>
+          <span class="name">Mentor</span>
+        </router-link>
+        <router-link to="/judges" class="item">
           <span class="icon">
             <i class="fa fa-folder-o"></i>
-          </span><span class="name">Judges</span>
-        </a>
+          </span>
+          <span class="name">Judges</span>
+        </router-link>
       </div>
     </div>
 </aside>

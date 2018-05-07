@@ -2,6 +2,8 @@ import Vue from 'vue';
 import Router from 'vue-router';
 import Home from '@/components/Home';
 import Mentor from '@/components/views/Mentor';
+import Admin from '@/components/views/Admin';
+import Judge from '@/components/views/Judge';
 import Auth from '@/components/auth/Authentication';
 import Confirm from '@/components/auth/Confirm';
 import PasswordReset from '@/components/auth/PasswordReset';
@@ -22,6 +24,16 @@ const router = new Router({
       path: '/mentor',
       name: 'mentor',
       component: Mentor,
+    },
+    {
+      path: '/admin',
+      name: 'admin',
+      component: Admin,
+    },
+    {
+      path: '/judge',
+      name: 'judge',
+      component: Judge,
     },
     {
       path: '/login',

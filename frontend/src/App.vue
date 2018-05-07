@@ -3,7 +3,7 @@
     <navigation></navigation>
     <div class="columns">
       <sidenav></sidenav>
-      <div class="column is-10 hero is-fullheight is-primary">
+      <div class="column is-10 hero is-fullheight">
         <router-view></router-view>
       </div>
     </div>
