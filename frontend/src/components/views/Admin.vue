@@ -89,9 +89,10 @@
         this.newEvent = !this.newEvent;
       },
       createEvent() {
-        axios.post('http://localhost:5000/event', { event })
-          .then(() => {
-            this.toggleEventForm();
+        axios.post('http://localhost:5000/event', { event: this.event })
+          .then((response) => {
+            // eslint-disable-next-line
+            console.log(response.data)
           });
       },
     },
