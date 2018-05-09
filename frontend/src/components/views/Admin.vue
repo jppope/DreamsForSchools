@@ -11,29 +11,28 @@
                     General
                   </p>
                   <ul class="menu-list">
-                    <li><a @click="toggleEventForm">New Event</a></li>
+                    <li><a @click.prevent="toggleComponent('newevent')">New Event</a></li>
                   </ul>
                   <p class="menu-label">
                     Administration
                   </p>
                   <ul class="menu-list">
                     <li>
-                      <a class="">Manage Teams</a>
+                      <a class="#">Teams</a>
                       <ul>
-                        <li><a>Add Teams</a></li>
-                        <li><a>Edit Teams</a></li>
-                        <li><a>Delete Team</a></li>
+                        <li><a @click.prevent="toggleComponent('newteam')">Add Teams</a></li>
+                        <li><a @click.prevent="toggleComponent('teams')">Manage Teams</a></li>
                       </ul>
                     </li>
                   </ul>
                   <!-- Judges -->
                   <ul class="menu-list">
                     <li>
-                      <a class="">Manage Judges</a>
+                      <a class="">Judges</a>
                       <ul>
-                        <li><a>Add Judge</a></li>
-                        <li><a>Edit Judge</a></li>
-                        <li><a>Delete Judge</a></li>
+                        <li><a @click.prevent="toggleComponent('newjudge')">Add Judge</a></li>
+                        <li><a @click.prevent="toggleComponent('judges')">Manage Judges</a></li>
+                        <li><a @click.prevent="toggleComponent('assignment')">Assign Judges</a></li>
                       </ul>
                     </li>
                   </ul>
@@ -42,58 +41,39 @@
             </div>
           </div>
           <div class="column">
-            <div v-if="true">
-              <div class="card">
-                <div class="card-content">
-                  <div class="field">
-                    <label class="label">Event Name</label>
-                    <div class="control">
-                      <input class="input" type="text" placeholder="Name of Event" v-model="event.name">
-                    </div>
-                  </div>
-                  <div class="field">
-                    <label class="label">Event date</label>
-                    <div class="control">
-                      <input class="input" type="date" placeholder="Select Date" v-model="event.date">
-                    </div>
-                  </div>
-                  <button class="button is-info is-pulled-right" @click.prevent="createEvent">Create New Event</button>
-                  <br>
-                </div>
-              </div>
-            </div>
-
-
+            <component :is="SelectedComponent"></component>
           </div>
-          <div class="column is-1"></div>
+          <div class="column is-2"></div>
         </div>
       </div>
     </section>
   </div>
 </template>
 <script>
-  import axios from 'axios';
+  import newevent from '../parts/NewEvent';
+  import newteam from '../parts/NewTeam';
+  import newjudge from '../parts/NewJudge';
+  import teams from '../parts/ManageTeams';
+  import judges from '../parts/ManageJudges';
+  import assignment from '../parts/Assignment';
 
   export default {
     data() {
       return {
-        event: {
-          name: '',
-          date: '',
-        },
-        newEvent: false,
+        SelectedComponent: '',
       };
     },
+    components: {
+      newevent,
+      newteam,
+      newjudge,
+      teams,
+      judges,
+      assignment,
+    },
     methods: {
-      toggleEventForm() {
-        this.newEvent = !this.newEvent;
-      },
-      createEvent() {
-        axios.post('http://localhost:5000/event', { event: this.event })
-          .then((response) => {
-            // eslint-disable-next-line
-            console.log(response.data)
-          });
+      toggleComponent(choice) {
+        this.SelectedComponent = choice;
       },
     },
   };

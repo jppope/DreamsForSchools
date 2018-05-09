@@ -4,7 +4,7 @@
     <section class="section">
       <div class="container">
         <div class="columns">
-          <div class="column"></div>
+          <div class="column is-2"></div>
           <div class="column is-half">
             <div class="card">
               <div class="card-content has-text-centered">
@@ -23,7 +23,7 @@
               </div>
             </div>
           </div>
-          <div class="column"></div>
+          <div class="column is-2"></div>
         </div>
       </div>
     </section>
@@ -31,7 +31,7 @@
     <section class="section is-paddingless">
       <div class="container">
         <div class="columns">
-          <div class="column"></div>
+          <div class="column is-2"></div>
           <div class="column is-half">
             <div class="card">
               <div class="card-content has-text-centered">

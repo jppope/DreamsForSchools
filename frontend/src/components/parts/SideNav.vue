@@ -30,7 +30,7 @@
           </span>
           <span class="name">Mentor</span>
         </router-link>
-        <router-link to="/judges" class="item">
+        <router-link to="/judge" class="item">
           <span class="icon">
             <i class="fa fa-folder-o"></i>
           </span>
