@@ -50,14 +50,14 @@ export async function createUser (ctx) {
   try {
     const token = user.generateEmailToken();
     await confirmation(referrer, token, user.username);
-    
-    ctx.body = { message: 'success'}
+
+    ctx.body = {message: 'success'}
   } catch (err) {
     ctx.throw(422, err.message)
   }
 
   /**
-   * The code below can be activated for immediate 
+   * The code below can be activated for immediate
    * account creation.
    */
 

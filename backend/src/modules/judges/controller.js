@@ -1,16 +1,44 @@
-import User from '../../models/users'
+import Judge from '../../models/Judge'
 
-/**
- * @api {post} /rsvp Create a new rsvp
- * @apiPermission
- * @apiVersion 1.0.0
- * @apiName CreateRsvp
- * @apiGroup Rsvp
- *
- */
-export async function createRsvp(ctx) {
+export async function createJudge(ctx) {
+
+}
+
+// get judges
+export async function getJudges (ctx) {
+  const judges = await Judge.find({})
+  ctx.body = { judges }
+}
+
+// get judge
+export async function getUser (ctx, next) {
+  try {
+    const judge = await Judge.findById(ctx.params.id)
+    if (!judge) {
+      ctx.throw(404)
+    }
+
+    ctx.body = {judge}
+  } catch (err) {
+    if (err === 404 || err.name === 'CastError') {
+      ctx.throw(404)
+    }
+
+    ctx.throw(500)
+  }
+
+  if (next) { return next() }
+}
+
+// delete judge
+export async function deleteJudge (ctx) {
+  const judge = ctx.body.judge
+
+  await judge.remove()
+
+  ctx.status = 200
   ctx.body = {
-    example: "hello world",
+    success: true
   }
 }
 
@@ -46,5 +74,3 @@ export async function getRsvp(ctx) {
   const users = { "Foo": "Bar" };
   ctx.body = { users }
 }
-
-
