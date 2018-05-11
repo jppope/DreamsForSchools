@@ -1,50 +1,54 @@
-import User from '../../models/users'
+import Judge from '../../models/Judge'
 
-/**
- * @api {post} /rsvp Create a new rsvp
- * @apiPermission
- * @apiVersion 1.0.0
- * @apiName CreateRsvp
- * @apiGroup Rsvp
- *
- */
-export async function createRsvp(ctx) {
-  ctx.body = {
-    example: "hello world",
+export async function createJudge (ctx) {
+  const judge = new Judge(ctx.request.body.judge)
+  try {
+    await judge.save()
+  } catch (err) {
+    ctx.throw(422, err.message)
   }
 }
 
-/**
- * @api {get} /rsvp Get RSVP from a person
- * @apiPermission user
- * @apiVersion 1.0.0
- * @apiName GetUsers
- * @apiGroup Users
- *
- * @apiExample Example usage:
- * curl -H "Content-Type: application/json" -X GET localhost:5000/users
- *
- * @apiSuccess {Object[]} users           Array of user objects
- * @apiSuccess {ObjectId} users._id       User id
- * @apiSuccess {String}   users.name      User name
- * @apiSuccess {String}   users.username  User username
- *
- * @apiSuccessExample {json} Success-Response:
- *     HTTP/1.1 200 OK
- *     {
- *       "users": [{
- *          "_id": "56bd1da600a526986cf65c80"
- *          "name": "John Doe"
- *          "username": "johndoe"
- *       }]
- *     }
- *
- * @apiUse TokenError
- */
-export async function getRsvp(ctx) {
-  //const users = await User.find({}, '-password')
-  const users = { "Foo": "Bar" };
-  ctx.body = { users }
+export async function getJudges (ctx) {
+  const judges = await Judge.find({})
+  ctx.body = { judges }
 }
 
+export async function getJudge (ctx, next) {
+  try {
+    const judge = await Judge.findById(ctx.params.id)
+    if (!judge) {
+      ctx.throw(404)
+    }
 
+    ctx.body = {judge}
+  } catch (err) {
+    if (err === 404 || err.name === 'CastError') {
+      ctx.throw(404)
+    }
+
+    ctx.throw(500)
+  }
+
+  if (next) { return next() }
+}
+
+export async function updateJudge (ctx) {
+  const judge = ctx.body.judge
+
+  Object.assign(judge, ctx.request.body.judge)
+
+  await judge.save()
+  ctx.body = { judge }
+}
+
+export async function deleteJudge (ctx) {
+  const judge = ctx.body.judge
+
+  await judge.remove()
+
+  ctx.status = 200
+  ctx.body = {
+    success: true
+  }
+}

@@ -51,7 +51,7 @@ export async function createUser (ctx) {
     const token = user.generateEmailToken();
     await confirmation(referrer, token, user.username);
 
-    ctx.body = { message: 'success'}
+    ctx.body = {message: 'success'}
   } catch (err) {
     ctx.throw(422, err.message)
   }
