@@ -97,6 +97,7 @@ export async function createUser (ctx) {
  *
  * @apiUse TokenError
  */
+
 export async function getUsers (ctx) {
   const users = await User.find({}, '-password')
   ctx.body = { users }
