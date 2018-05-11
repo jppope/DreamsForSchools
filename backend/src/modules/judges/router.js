@@ -1,4 +1,3 @@
-import { ensureJudge } from '../../middleware/validators'
 import * as judge from './controller'
 
 export const baseUrl = '/judges'
@@ -15,7 +14,6 @@ export default [
     method: 'GET',
     route: '/',
     handlers: [
-      ensureJudge,
       judge.getJudges
     ]
   },
@@ -23,7 +21,6 @@ export default [
     method: 'GET',
     route: '/:id',
     handlers: [
-      ensureJudge,
       judge.getJudge
     ]
   },
@@ -31,7 +28,6 @@ export default [
     method: 'PUT',
     route: '/:id',
     handlers: [
-      ensureJudge,
       judge.getJudge,
       judge.updateJudge
     ]
@@ -40,7 +36,6 @@ export default [
     method: 'DELETE',
     route: '/:id',
     handlers: [
-      ensureJudge,
       judge.getJudge,
       judge.deleteJudge
     ]
