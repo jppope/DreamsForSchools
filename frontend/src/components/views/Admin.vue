@@ -50,6 +50,7 @@
   </div>
 </template>
 <script>
+  import admindefault from '../parts/AdminDefault';
   import newevent from '../parts/NewEvent';
   import newteam from '../parts/NewTeam';
   import newjudge from '../parts/NewJudge';
@@ -60,10 +61,11 @@
   export default {
     data() {
       return {
-        SelectedComponent: '',
+        SelectedComponent: 'admindefault',
       };
     },
     components: {
+      admindefault,
       newevent,
       newteam,
       newjudge,

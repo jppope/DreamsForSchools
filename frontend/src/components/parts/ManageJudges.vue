@@ -10,7 +10,7 @@
         </tr>
       </thead>
       <tbody>
-      <tr v-for="row in judges" :key="judge._id">
+      <tr v-for="row in judgesList">
         <td>{{ row }}</td>
         <td>{{ row }}</td>
         <td><a class="button is-small is-info">Edit</a></td>
@@ -21,12 +21,14 @@
   </div>
 </template>
 <script>
-  export default {
-    props: ['judges'],
-    methods: {
-      getTeams() {
+  import {mapGetters} from 'vuex';
 
-      },
+  export default {
+    computed: {
+      ...mapGetters(['judgesList']),
+    },
+    methods: {
+
     },
   };
 </script>

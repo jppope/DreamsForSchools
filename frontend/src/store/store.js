@@ -17,6 +17,7 @@ const state = {
   token: '',
   user: {},
   teams: [],
+  judges: [],
   eventList: [],
   mentorTeams: [],
 }
@@ -26,6 +27,7 @@ const getters = {
   events: (state) => state.eventList,
   mentorTeamList: (state) => state.mentorTeams,
   teamsList: (state) => state.teams,
+  judgesList: (state) => state.judges,
 }
 
 const mutations = {
@@ -45,6 +47,7 @@ const mutations = {
     state.eventList = payload;
   },
   teams: (state, payload) => state.teams = payload,
+  judges: (state, payload) => state.judges = payload,
   mentorTeams: (state, payload) => state.mentorTeams = payload,
 }
 
@@ -102,6 +105,14 @@ const actions = {
   logout: (context) => {
     localStorage.removeItem('token');
     context.commit('logOut');
+  },
+  getJudges: (context) => {
+    /* eslint-disable*/
+    axios.get('http://127.0.0.1:5000/judges')
+      .then((response) => {
+        console.log(response.data);
+        context.commit('judges', response.data.judges)
+      })
   },
   getTeams: (context) => {
     /* eslint-disable*/
