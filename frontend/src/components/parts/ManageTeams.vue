@@ -11,8 +11,8 @@
         </tr>
       </thead>
       <tbody>
-      <tr v-for="row in teams" :key="team._id">
-        <td>{{ row.team }}</td>
+      <tr v-for="row in teamsList">
+        <td>{{ row.team_name }}</td>
         <td>{{ row.school_name }}</td>
         <td>{{ row.mentor }}</td>
         <td><a class="button is-small is-info">Edit</a></td>
@@ -23,12 +23,17 @@
   </div>
 </template>
 <script>
-  export default {
-    props: ['teams'],
-    methods: {
-      getTeams() {
+  import { mapActions, mapGetters } from 'vuex';
 
-      },
+  export default {
+    computed: {
+      ...mapGetters(['teamsList']),
+    },
+    methods: {
+      ...mapActions(['getTeams']),
+    },
+    mounted() {
+      this.getTeams();
     },
   };
 </script>

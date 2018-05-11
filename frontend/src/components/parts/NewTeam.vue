@@ -8,15 +8,15 @@
           </div>
         </div>
         <div class="field">
-          <label class="label">team date</label>
+          <label class="label">School Name</label>
           <div class="control">
-            <input class="input" type="date" placeholder="Select Date" v-model="team.school_name">
+            <input class="input" type="text" placeholder="Select Date" v-model="team.school_name">
           </div>
         </div>
         <div class="field">
-          <label class="label">team date</label>
+          <label class="label">Mentor Name</label>
           <div class="control">
-            <input class="input" type="date" placeholder="Select Date" v-model="team.mentor">
+            <input class="input" type="text" placeholder="Select Date" v-model="team.mentor">
           </div>
         </div>
         <button class="button is-info is-pulled-right" @click.prteam="createTeam">Create New team</button>
