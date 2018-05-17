@@ -5,4 +5,15 @@ export async function getTeams(ctx) {
   ctx.body = { teams }
 }
 
-
+export async function createTeam(ctx) {
+  const team = new Team(ctx.request.body.team)
+  try {
+    await team.save()
+  } catch (err) {
+    ctx.throw(422, err.message)
+  }
+  ctx.body = {
+    status: 200,
+    message: "you have successfully generated a team"
+  }
+}

@@ -12,4 +12,12 @@ export default [
       teams.getTeams,
     ]
   },
+  {
+    method: 'POST',
+    route: '/',
+    handlers: [
+      // ensureUser,
+      teams.createTeam,
+    ]
+  },
 ]

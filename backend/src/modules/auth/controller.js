@@ -55,17 +55,13 @@ import resetEmail from '../../utils/passwordResetEmail'
  */
 
 export async function authUser (ctx, next) {
-
+  console.log(ctx.user)
   return passport.authenticate('local', (user) => {
-
     if (!user) ctx.throw(401);
     if (!user.active) ctx.throw(401);
-
     const token = user.generateToken()
     const response = user.toJSON()
-
     delete response.password
-
     ctx.body = {
       token,
       user: response
@@ -188,7 +184,7 @@ export async function sendResetEmail (ctx, next) {
     }
     ctx.throw(500)
   }
-  
+
   if (next) { return next() }
 }
 
@@ -210,7 +206,7 @@ export async function resetPassword(ctx, next) {
   } catch (err) {
     if(err) ctx.throw(449);
   }
-  
+
   ctx.body = { notification: 'success'}
   if (next) { return next() }
 }
