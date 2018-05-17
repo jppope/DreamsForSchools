@@ -53,18 +53,18 @@ const router = new Router({
   ],
 });
 
-router.beforeEach((to, from, next) => {
-  if (
-    !store.getters.isLoggedIn &&
-    to.path !== '/login' &&
-    to.path !== '/confirm' &&
-    to.path !== '/reset'
-  ) {
-    next('/login');
-  } else {
-    next();
-  }
-});
+// router.beforeEach((to, from, next) => {
+//   if (
+//     !store.getters.isLoggedIn &&
+//     to.path !== '/login' &&
+//     to.path !== '/confirm' &&
+//     to.path !== '/reset'
+//   ) {
+//     next('/login');
+//   } else {
+//     next();
+//   }
+// });
 
 export default router;
 

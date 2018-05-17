@@ -4,7 +4,7 @@
         <div class="field">
           <label class="label">Team Name</label>
           <div class="control">
-            <input class="input" type="text" placeholder="Name of team" v-model="team.name">
+            <input class="input" type="text" placeholder="Name of team" v-model="team.team_name">
           </div>
         </div>
         <div class="field">
@@ -19,7 +19,7 @@
             <input class="input" type="text" placeholder="Select Date" v-model="team.mentor">
           </div>
         </div>
-        <button class="button is-info is-pulled-right" @click.prteam="createTeam">Create New team</button>
+        <button class="button is-info is-pulled-right" @click.prevent="createTeam">Create New team</button>
         <br>
       </div>
     </div>
@@ -40,7 +40,7 @@
     },
     methods: {
       createTeam() {
-        axios.post('http://localhost:5000/team', { team: this.team })
+        axios.post('http://localhost:5000/teams', { team: this.team })
           .then((response) => {
             // eslint-disable-next-line
             console.log(response.data);

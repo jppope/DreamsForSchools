@@ -1,31 +1,7 @@
 <template>
   <div>
-    <section class="section">
-      <div class="container">
-        <div class="columns">
-          <div class="column"></div>
-          <div class="column is-half">
-            <div class="card">
-              <div class="card-content has-text-centered">
-                  <div class="field">
-                    <label class="label">Please select your Role and Select the Event</label>
-                    <div class="control has-text-centered">
-                      <div class="select" v-model="events">
-                        <select>
-                          <option v-for="event in events">
-                            {{ event.name }}
-                            </option>
-                        </select>
-                      </div>
-                    </div>
-                  </div>
-              </div>
-            </div>
-          </div>
-          <div class="column"></div>
-        </div>
-      </div>
-    </section>
+    <br>
+    <br>
     <section class="section">
       <div class="container">
         <div class="columns">
@@ -44,6 +20,7 @@
               <card>See the Results!</card>
             </router-link>
           </div>
+          <div class="column is-2"></div>
         </div>
       </div>
     </section>

@@ -114,20 +114,20 @@ const actions = {
         context.commit('judges', response.data.judges)
       })
   },
-  getTeams: (context) => {
-    /* eslint-disable*/
-    axios.get('http://127.0.0.1:5000/teams')
-      .then((response) => {
-        console.log(response.data);
-        context.commit('teams', response.data.teams)
-      })
-  },
   getEvents: (context) => {
     /* eslint-disable*/
     axios.get('http://127.0.0.1:5000/event')
       .then((response) => {
         console.log(response.data);
         context.commit('events', response.data.events)
+      })
+  },
+  getTeams: (context) => {
+    /* eslint-disable*/
+    axios.get('http://127.0.0.1:5000/teams')
+      .then((response) => {
+        console.log(response.data);
+        context.commit('teams', response.data.teams)
       })
   },
   getMentorTeams: (context) => {

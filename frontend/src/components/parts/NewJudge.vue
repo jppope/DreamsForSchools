@@ -8,11 +8,17 @@
           </div>
         </div>
         <div class="field">
-          <label class="label">judge date</label>
-          <div class="control">
-            <input class="input" type="date" placeholder="Select Date" v-model="judge.date">
+            <div class="control">
+              <div class="select" v-model="events">
+                <select>
+                  <option>Select Event</option>
+                  <option v-for="event in events">
+                    {{ event.name }}
+                    </option>
+                </select>
+              </div>
+            </div>
           </div>
-        </div>
         <button class="button is-info is-pulled-right" @click.prevent="createJudge">Create New judge</button>
         <br>
       </div>
@@ -20,6 +26,7 @@
 </template>
 <script>
   import axios from 'axios';
+  import { mapGetters, mapActions } from 'vuex';
 
   export default {
     name: 'newjudge',
@@ -31,7 +38,11 @@
         },
       };
     },
+    computed: {
+      ...mapGetters(['events']),
+    },
     methods: {
+      ...mapActions(['getEvents']),
       createJudge() {
         axios.post('http://localhost:5000/judge', { judge: this.judge })
           .then((response) => {
@@ -39,6 +50,9 @@
             console.log(response.data);
           });
       },
+    },
+    mounted() {
+      this.getEvents();
     },
   };
 </script>

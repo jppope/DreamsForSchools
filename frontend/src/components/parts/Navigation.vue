@@ -4,7 +4,7 @@
       <a class="navbar-item" href="http://jonpauluritis.com">
         Branding
       </a>
-      
+
       <a class="navbar-item is-hidden-desktop" href="" target="_blank">
         <span class="icon" style="color: #333;">
           <i class="fa fa-github"></i>
@@ -27,6 +27,20 @@
     <div id="navMenuExample" class="navbar-menu">
       <div class="navbar-end">
         <div class="navbar-item">
+          <div class="field">
+            <div class="control has-text-centered">
+              <div class="select" v-model="events">
+                <select>
+                  <option>Select Event</option>
+                  <option v-for="event in events">
+                    {{ event.name }}
+                    </option>
+                </select>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="navbar-item">
           <div class="button is-primary" to="login" v-show="isLoggedIn" @click="logout">
             <span class="icon"><i class="fa fa-user"></i></span>
             <span>Log Out!!!</span>
@@ -42,10 +56,16 @@
   export default {
     name: 'navigation',
     computed: {
-      ...mapGetters(['isLoggedIn']),
+      ...mapGetters(['isLoggedIn', 'events']),
+      events() {
+        return this.$store.getters.events;
+      },
     },
     methods: {
-      ...mapActions(['logout']),
+      ...mapActions(['logout', 'getEvents']),
+    },
+    created() {
+      this.getEvents();
     },
   };
 </script>

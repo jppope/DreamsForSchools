@@ -55,7 +55,6 @@ import resetEmail from '../../utils/passwordResetEmail'
  */
 
 export async function authUser (ctx, next) {
-  console.log(ctx.user)
   return passport.authenticate('local', (user) => {
     if (!user) ctx.throw(401);
     if (!user.active) ctx.throw(401);
