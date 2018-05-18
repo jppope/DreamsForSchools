@@ -2,7 +2,7 @@
   <div id="app">
     <navigation></navigation>
     <div class="columns">
-      <sidenav></sidenav>
+      <sidenav v-if="$route.name !== 'login'"></sidenav>
       <div class="column is-10 hero is-fullheight">
         <router-view></router-view>
       </div>

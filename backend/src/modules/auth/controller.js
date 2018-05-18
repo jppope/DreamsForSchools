@@ -55,9 +55,12 @@ import resetEmail from '../../utils/passwordResetEmail'
  */
 
 export async function authUser (ctx, next) {
+  console.log("controller", ctx);
   return passport.authenticate('local', (user) => {
     if (!user) ctx.throw(401);
-    if (!user.active) ctx.throw(401);
+    // TODO check out whats up with this
+    // seems to be throwing issues ... dunno if I deactivated
+    // if (!user.active) ctx.throw(401);
     const token = user.generateToken()
     const response = user.toJSON()
     delete response.password

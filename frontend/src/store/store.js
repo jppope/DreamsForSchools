@@ -14,6 +14,7 @@ Vue.use(Vuex);
 
 const state = {
   isLoggedIn: false,
+  event: '',
   token: '',
   user: {},
   teams: [],
@@ -24,6 +25,7 @@ const state = {
 
 const getters = {
   isLoggedIn: (state) => state.isLoggedIn,
+  event: (state) => state.event,
   events: (state) => state.eventList,
   mentorTeamList: (state) => state.mentorTeams,
   teamsList: (state) => state.teams,
@@ -63,7 +65,7 @@ const actions = {
     /* eslint-disable*/
     axios.post('http://127.0.0.1:5000/users', { user })
       .then((response) => {
-        // console.log(response.data)
+        console.log(response.data)
         localStorage.setItem('user', response.data)
         this.showRegister = false;
         this.showLogin = false;
@@ -91,6 +93,7 @@ const actions = {
   login: (context, creds) => {
     axios.post('http://127.0.0.1:5000/auth', creds)
       .then((response) => {
+        console.log(response);
         var now = new Date();
         var expiration = new Date(now.getTime() + (2*1000*60*60));
         localStorage.setItem('token', response.data.token);
@@ -118,7 +121,6 @@ const actions = {
     /* eslint-disable*/
     axios.get('http://127.0.0.1:5000/event')
       .then((response) => {
-        console.log(response.data);
         context.commit('events', response.data.events)
       })
   },

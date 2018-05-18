@@ -66,6 +66,7 @@
     methods: {
       ...mapActions(['login']),
       submitLogin() {
+        console.log(this.user);
         this.$store.dispatch('login', JSON.parse(JSON.stringify(this.user)));
       },
       authAspect(authComponent) {

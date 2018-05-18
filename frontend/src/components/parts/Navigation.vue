@@ -26,15 +26,16 @@
 
     <div id="navMenuExample" class="navbar-menu">
       <div class="navbar-end">
-        <div class="navbar-item">
+        <div class="navbar-item">{{ event }}</div>
+        <div class="navbar-item" v-if="$route.name !== 'login'">
           <div class="field">
             <div class="control has-text-centered">
               <div class="select" v-model="events">
                 <select>
                   <option>Select Event</option>
-                  <option v-for="event in events">
+                  <option v-for="event in events" v-bind:key="event.id">
                     {{ event.name }}
-                    </option>
+                  </option>
                 </select>
               </div>
             </div>
@@ -56,7 +57,7 @@
   export default {
     name: 'navigation',
     computed: {
-      ...mapGetters(['isLoggedIn', 'events']),
+      ...mapGetters(['event', 'isLoggedIn', 'events']),
       events() {
         return this.$store.getters.events;
       },
