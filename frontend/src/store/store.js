@@ -14,7 +14,7 @@ Vue.use(Vuex);
 
 const state = {
   isLoggedIn: false,
-  event: '',
+  event: {},
   token: '',
   user: {},
   teams: [],
@@ -51,6 +51,7 @@ const mutations = {
   teams: (state, payload) => state.teams = payload,
   judges: (state, payload) => state.judges = payload,
   mentorTeams: (state, payload) => state.mentorTeams = payload,
+  setEvent: (state, payload) => state.event = payload,
 }
 
 const actions = {
@@ -121,6 +122,7 @@ const actions = {
     /* eslint-disable*/
     axios.get('http://127.0.0.1:5000/event')
       .then((response) => {
+        console.log(response.data)
         context.commit('events', response.data.events)
       })
   },
@@ -140,6 +142,9 @@ const actions = {
         context.commit('mentorTeams', response.data.mentors)
       })
   },
+  setEvent: (context, payload) => {
+    context.commit('setEvent', payload);
+  }
 }
 
 export default new Vuex.Store({

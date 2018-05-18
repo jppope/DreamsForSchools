@@ -26,14 +26,13 @@
 
     <div id="navMenuExample" class="navbar-menu">
       <div class="navbar-end">
-        <div class="navbar-item">{{ event }}</div>
+        <div class="navbar-item">Please Select Your Event</div>
         <div class="navbar-item" v-if="$route.name !== 'login'">
           <div class="field">
             <div class="control has-text-centered">
-              <div class="select" v-model="events">
-                <select>
-                  <option>Select Event</option>
-                  <option v-for="event in events" v-bind:key="event.id">
+              <div class="select" >
+                <select v-model="selectedEvent" @change="updateEvent" placeholder="select event">
+                  <option v-for="event in events">
                     {{ event.name }}
                   </option>
                 </select>
@@ -56,6 +55,11 @@
 
   export default {
     name: 'navigation',
+    data() {
+      return {
+        selectedEvent: {},
+      };
+    },
     computed: {
       ...mapGetters(['event', 'isLoggedIn', 'events']),
       events() {
@@ -63,7 +67,10 @@
       },
     },
     methods: {
-      ...mapActions(['logout', 'getEvents']),
+      ...mapActions(['logout', 'getEvents', 'setEvent']),
+      updateEvent() {
+        this.setEvent(this.selectedEvent);
+      },
     },
     created() {
       this.getEvents();
