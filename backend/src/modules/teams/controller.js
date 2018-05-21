@@ -17,3 +17,12 @@ export async function createTeam(ctx) {
     message: "you have successfully generated a team"
   }
 }
+
+
+export async function deleteTeam(ctx) {
+  await Team.remove({ _id: ctx.params.id })
+  ctx.status = 200
+  ctx.body = {
+    success: true
+  }
+}

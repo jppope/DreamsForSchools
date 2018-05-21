@@ -23,3 +23,14 @@ export async function getEvents (ctx) {
 }
 
 
+
+export async function updateEvent(ctx) {
+  const teams = ctx.request.body.teams;
+  const eventId = ctx.params.id
+  console.log(eventId)
+  Event.findByIdAndUpdate({ _id: eventId },{ teams }, {upsert:true})
+  ctx.body = {
+    response_code: 200
+  }
+}
+

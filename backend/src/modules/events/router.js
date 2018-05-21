@@ -20,4 +20,13 @@ export default [
       event.getEvents
     ]
   },
+  {
+    method: 'PUT',
+    route: '/:id',
+    handlers: [
+      // ensureUser,
+      // user.getUser,
+      event.updateEvent
+    ]
+  },
 ]

@@ -15,6 +15,10 @@ let TeamSchema = new mongoose.Schema({
   team_name: {
     type: String,
     trim: true
+  },
+  event: {
+    type: String,
+    trim: true
   }
 });
 

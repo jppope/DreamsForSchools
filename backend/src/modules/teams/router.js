@@ -20,4 +20,12 @@ export default [
       teams.createTeam,
     ]
   },
+  {
+    method: 'DELETE',
+    route: '/:id',
+    handlers: [
+      // ensureUser,
+      teams.deleteTeam,
+    ]
+  }
 ]

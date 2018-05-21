@@ -11,7 +11,8 @@
                     General
                   </p>
                   <ul class="menu-list">
-                    <li><a @click.prevent="toggleComponent('newevent')">New Event</a></li>
+                    <li><a @click.prevent="toggleComponent('newevent')">Create Event</a></li>
+                    <li><a @click.prevent="toggleComponent('buildevent')">Build Event</a></li>
                   </ul>
                   <p class="menu-label">
                     Administration
@@ -32,7 +33,6 @@
                       <ul>
                         <li><a @click.prevent="toggleComponent('newjudge')">Add Judge</a></li>
                         <li><a @click.prevent="toggleComponent('judges')">Manage Judges</a></li>
-                        <li><a @click.prevent="toggleComponent('assignment')">Assign Judges</a></li>
                       </ul>
                     </li>
                   </ul>
@@ -52,11 +52,12 @@
 <script>
   import admindefault from '../parts/AdminDefault';
   import newevent from '../parts/NewEvent';
-  import newteam from '../parts/NewTeam';
+  import buildevent from '../parts/BuildEvent';
+  import newteam from '../parts/teams/NewTeam';
   import newjudge from '../parts/NewJudge';
-  import teams from '../parts/ManageTeams';
+  import teams from '../parts/teams/ManageTeams';
   import judges from '../parts/ManageJudges';
-  import assignment from '../parts/Assignment';
+  // import assignment from '../parts/Assignment';
 
   export default {
     data() {
@@ -67,11 +68,12 @@
     components: {
       admindefault,
       newevent,
+      buildevent,
       newteam,
       newjudge,
       teams,
       judges,
-      assignment,
+      // assignment,
     },
     methods: {
       toggleComponent(choice) {

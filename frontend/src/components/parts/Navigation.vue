@@ -32,7 +32,7 @@
             <div class="control has-text-centered">
               <div class="select" >
                 <select v-model="selectedEvent" @change="updateEvent" placeholder="select event">
-                  <option v-for="event in events">
+                  <option v-for="event in events" :value="event">
                     {{ event.name }}
                   </option>
                 </select>
