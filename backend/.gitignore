@@ -57,3 +57,4 @@ sftp-config.json
 #Documentation
 docs
 sendgrid.env
+./config
