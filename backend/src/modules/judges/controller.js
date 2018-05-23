@@ -1,16 +1,26 @@
 import Judge from '../../models/Judge'
 
 export async function createJudge (ctx) {
+  console.log(ctx.request.body)
   const judge = new Judge(ctx.request.body.judge)
   try {
     await judge.save()
   } catch (err) {
     ctx.throw(422, err.message)
   }
+  ctx.body = {
+    status_code: 200
+   }
 }
 
 export async function getJudges (ctx) {
   const judges = await Judge.find({})
+  ctx.body = { judges }
+}
+
+export async function eventJudges(ctx) {
+  console.log(ctx);
+  const judges = await Judge.find({ events: { "$in": [ctx.params.id] } })
   ctx.body = { judges }
 }
 
@@ -43,12 +53,8 @@ export async function updateJudge (ctx) {
 }
 
 export async function deleteJudge (ctx) {
-  const judge = ctx.body.judge
-
-  await judge.remove()
-
-  ctx.status = 200
-  ctx.body = {
-    success: true
+    await Judge.remove({ _id: ctx.params.id });
+    ctx.body = {
+      status_code: 200
+    }
   }
-}

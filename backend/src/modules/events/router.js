@@ -29,4 +29,14 @@ export default [
       event.updateEvent
     ]
   },
+    {
+      method: 'PUT',
+      route: '/:id/score',
+      handlers: [
+        // ensureUser,
+        // user.getUser,
+        event.addScore
+      ]
+    },
+
 ]

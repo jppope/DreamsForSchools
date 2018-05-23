@@ -13,6 +13,7 @@
                   <ul class="menu-list">
                     <li><a @click.prevent="toggleComponent('newevent')">Create Event</a></li>
                     <li><a @click.prevent="toggleComponent('buildevent')">Build Event</a></li>
+                    <li><a @click.prevent="toggleComponent('viewevent')">View Event</a></li>
                   </ul>
                   <p class="menu-label">
                     Administration
@@ -52,12 +53,12 @@
 <script>
   import admindefault from '../parts/AdminDefault';
   import newevent from '../parts/NewEvent';
-  import buildevent from '../parts/BuildEvent';
+  import buildevent from '../parts/events/BuildEvent';
   import newteam from '../parts/teams/NewTeam';
-  import newjudge from '../parts/NewJudge';
   import teams from '../parts/teams/ManageTeams';
-  import judges from '../parts/ManageJudges';
-  // import assignment from '../parts/Assignment';
+  import newjudge from '../parts/judges/NewJudge';
+  import judges from '../parts/judges/ManageJudges';
+  import viewevent from '../parts/events/ViewEvent';
 
   export default {
     data() {
@@ -73,7 +74,7 @@
       newjudge,
       teams,
       judges,
-      // assignment,
+      viewevent,
     },
     methods: {
       toggleComponent(choice) {

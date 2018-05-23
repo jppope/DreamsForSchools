@@ -19,6 +19,7 @@ const state = {
   user: {},
   teams: [],
   judges: [],
+  numJudges: 0,
   eventList: [],
   mentorTeams: [],
 }
@@ -52,6 +53,35 @@ const mutations = {
   judges: (state, payload) => state.judges = payload,
   mentorTeams: (state, payload) => state.mentorTeams = payload,
   setEvent: (state, payload) => state.event = payload,
+  numJudges: (state, payload) => state.numJudges = payload,
+  addEventJudges: (state, payload) => {
+    let judges = payload;
+    // each team gets judged a certain number of times
+    let judgesNeeded = Math.ceil(state.event.teams.length * state.numJudges / judges.length);
+    // store of arrays of judges
+    let eventJudgements = [];
+    // push judges in to total number of event judgements needed
+    for (var i = 0; i < judgesNeeded; i++){ eventJudgements.push(judges) }
+    // single dimensional array
+    let flattened = [].concat.apply([], eventJudgements);
+    // randomize the result
+    let random = flattened.sort(() => Math.random() - 0.5)
+    // chunk into final assignment size
+    const chunk = (arr, chunkSize, cache = []) => {
+      const temp = [...arr]
+      while (temp.length) cache.push(temp.splice(0, chunkSize))
+      return cache
+    }
+    // assignments
+    let assignments = chunk(random, state.numJudges)
+    state.event.teams = state.event.teams.map((team, index) => {
+      team.judges = assignments[index];
+      return team;
+    })
+
+    axios.put(`http://127.0.0.1:5000/event/${state.event._id}`, state.event)
+      .then((response) => { console.log(response);})
+  },
 }
 
 const actions = {
@@ -118,6 +148,9 @@ const actions = {
         context.commit('judges', response.data.judges)
       })
   },
+  completeJudgeAssignment: (context, payload) => {
+    context.commit('setEvent', payload)
+  },
   getEvents: (context) => {
     /* eslint-disable*/
     axios.get('http://127.0.0.1:5000/event')
@@ -144,7 +177,14 @@ const actions = {
   },
   setEvent: (context, payload) => {
     context.commit('setEvent', payload);
-  }
+  },
+  eventJudges: (context, payload) => {
+    axios.get(`http://127.0.0.1:5000/judges/events/${payload}`)
+      .then((response) => {
+        context.commit('addEventJudges', response.data.judges)
+      })
+  },
+  numberOfJudges: (context, payload) => context.commit('numJudges', payload),
 }
 
 export default new Vuex.Store({

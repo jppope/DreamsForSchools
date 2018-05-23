@@ -16,7 +16,7 @@
             </router-link>
           </div>
           <div class="column">
-            <router-link to="/admin">
+            <router-link to="/results">
               <card>See the Results!</card>
             </router-link>
           </div>

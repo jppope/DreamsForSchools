@@ -22,15 +22,38 @@ export async function getEvents (ctx) {
   ctx.body = { events }
 }
 
-
-
 export async function updateEvent(ctx) {
   const teams = ctx.request.body.teams;
   const eventId = ctx.params.id
-  console.log(eventId)
-  Event.findByIdAndUpdate({ _id: eventId },{ teams }, {upsert:true})
+
+  await Event.findByIdAndUpdate(
+    { _id: eventId },
+    { $set: { teams: teams } },
+    { upsert: true, new: true }
+  );
+
   ctx.body = {
-    response_code: 200
+    status_code: 200
+  }
+}
+
+export async function addScore(ctx) {
+  const score = ctx.request.body.evaluation;
+  const eventId = ctx.params.id
+
+  await Event.findByIdAndUpdate({
+    _id: eventId
+  }, {
+    $push: {
+      scores: score
+    }
+  }, {
+    upsert: true,
+    new: true
+  });
+
+  ctx.body = {
+    status_code: 200
   }
 }
 

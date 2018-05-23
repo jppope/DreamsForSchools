@@ -19,6 +19,13 @@ export default [
   },
   {
     method: 'GET',
+    route: '/events/:id',
+    handlers: [
+      judge.eventJudges
+    ]
+  },
+  {
+    method: 'GET',
     route: '/:id',
     handlers: [
       judge.getJudge
@@ -36,7 +43,6 @@ export default [
     method: 'DELETE',
     route: '/:id',
     handlers: [
-      judge.getJudge,
       judge.deleteJudge
     ]
   }

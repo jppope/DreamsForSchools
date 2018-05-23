@@ -9,10 +9,10 @@
         </div>
         <div class="field">
             <div class="control">
-              <div class="select" v-model="events">
-                <select>
+              <div class="select" >
+                <select v-model="judge.events[0]">
                   <option>Select Event</option>
-                  <option v-for="event in events">
+                  <option v-for="event in events" :value="event._id">
                     {{ event.name }}
                     </option>
                 </select>
@@ -27,6 +27,8 @@
 <script>
   import axios from 'axios';
   import { mapGetters, mapActions } from 'vuex';
+  // import router from '../../../router/index';
+
 
   export default {
     name: 'newjudge',
@@ -34,7 +36,7 @@
       return {
         judge: {
           name: '',
-          date: '',
+          events: [],
         },
       };
     },
@@ -44,10 +46,9 @@
     methods: {
       ...mapActions(['getEvents']),
       createJudge() {
-        axios.post('http://localhost:5000/judge', { judge: this.judge })
-          .then((response) => {
-            // eslint-disable-next-line
-            console.log(response.data);
+        axios.post('http://localhost:5000/judges', { judge: this.judge })
+          .then(() => {
+            this.$router.push('home');
           });
       },
     },

@@ -5,11 +5,7 @@ let JudgeSchema = new mongoose.Schema({
         type: String,
         trim: true
       },
-    team: [{
-        team_name: { type: String, trim: true },
-        individual_score: [Number],
-        score: { type: Number }
-    }]
+    events: [{}]
 });
 
 let Judge = mongoose.model('Judge', JudgeSchema);

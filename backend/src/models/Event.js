@@ -8,7 +8,8 @@ let EventSchema = new mongoose.Schema({
   date: {
     type: Date,
   },
-  teams: [{}]
+  teams: [{}],
+  scores: [{}],
 });
 
 let Event = mongoose.model('Event', EventSchema);
