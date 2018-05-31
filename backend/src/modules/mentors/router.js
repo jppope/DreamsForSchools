@@ -8,8 +8,8 @@ export default [
   //   method: 'POST',
   //   route: '/',
   //   handlers: [
-  //     ensureUser,
-  //     rsvp.createRsvp
+  //     // ensureUser,
+  //     rsvp.createRsvp,
   //   ]
   // },
   {

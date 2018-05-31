@@ -7,36 +7,56 @@
         <div class="columns">
           <div class="column">
             <router-link to="/judge">
-              <card>I am a Judge!</card>
+              <card>
+                <template slot="image">
+                  <img src="https://bulma.io/images/placeholders/1280x960.png" alt="Placeholder image">
+                </template>
+                I am a Judge!
+              </card>
             </router-link>
           </div>
           <div class="column">
             <router-link to="/mentor">
-              <card>I am a Mentor!</card>
+              <card>
+                <template slot="image">
+                  <img src="https://bulma.io/images/placeholders/1280x960.png" alt="Placeholder image">
+                </template>
+                I am a Mentor!
+              </card>
             </router-link>
           </div>
           <div class="column">
             <router-link to="/results">
-              <card>See the Results!</card>
+              <card>
+                <template slot="image">
+                  <img src="https://bulma.io/images/placeholders/1280x960.png" alt="Placeholder image">
+                </template>
+                See the Results!
+              </card>
             </router-link>
           </div>
           <div class="column is-2"></div>
         </div>
       </div>
     </section>
+    <event :showEventSelect="showSelectEvent" @closeEventSelect="hideEventModal"></event>
   </div>
 </template>
 <script>
   // import moment from 'moment';
   import { mapActions, mapGetters } from 'vuex';
   import card from './parts/Card';
+  import event from './SelectEvent';
 
   export default {
     data() {
-      return {};
+      return {
+        showSelectEvent: true,
+      };
     },
     components: {
       card,
+      event,
     },
     computed: {
       ...mapGetters(['events']),
@@ -46,6 +66,9 @@
     },
     methods: {
       ...mapActions(['getEvents']),
+      hideEventModal() {
+        this.showSelectEvent = false;
+      },
     },
     created() {
       this.getEvents();

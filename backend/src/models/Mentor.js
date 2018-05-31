@@ -1,8 +1,8 @@
 let mongoose = require('mongoose');
 
 let teamScoreSchema = new mongoose.Schema({
-  TeamMateNumber: Number,
-  choice: Number
+  teamMember: String,
+  choice: String,
 });
 
 let MentorSchema = new mongoose.Schema({

@@ -51,14 +51,20 @@
                       <td>
                         <div class="field">
                           <div class="control">
-                            <input class="input" type="text" v-model="students[index].name">
+                            <input class="input" type="text" v-model="students[index].teamMember">
                           </div>
                         </div>
                       </td>
                       <td>
                         <div class="field">
                           <div class="control">
-                            <input class="input" type="text" v-model="students[index].rating">
+                            <div class="select">
+                            <select v-model="students[index].choice">
+                              <option v-for="team in event.teams" :value="team._id">
+                                {{ team.team_name }}
+                              </option>
+                            </select>
+                            </div>
                           </div>
                         </div>
                       </td>
@@ -84,6 +90,7 @@
   </div>
 </template>
 <script>
+  import axios from 'axios';
   import { mapActions, mapGetters } from 'vuex';
 
   export default {
@@ -93,12 +100,20 @@
       };
     },
     computed: {
-      ...mapGetters(['mentorTeamList']),
+      ...mapGetters(['mentorTeamList', 'event']),
     },
     methods: {
       ...mapActions(['getMentorTeams']),
       removeRating(index) {
         this.students.splice(index, 1);
+      },
+      // mentors
+      submitScore() {
+        axios.post('http://localhost:5000/mentors', { judge: this.judge })
+          .then(() => {
+            this.$router.push('home');
+          });
+        axios.post('http://localhost:5000/', {});
       },
     },
     mounted() {

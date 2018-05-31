@@ -30,7 +30,7 @@
         <div class="navbar-item" v-if="$route.name !== 'login'">
           <div class="field">
             <div class="control has-text-centered">
-              <div class="select" >
+              <div class="select">
                 <select v-model="selectedEvent" @change="updateEvent" placeholder="select event">
                   <option v-for="event in events" :value="event">
                     {{ event.name }}
