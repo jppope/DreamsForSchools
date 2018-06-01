@@ -2,7 +2,7 @@
   <nav class="navbar has-shadow" style="border-bottom: 1px solid rgba(0,0,0,0.2) ">
     <div class="navbar-brand">
       <a class="navbar-item" href="http://jonpauluritis.com">
-        Branding
+        AppJam+
       </a>
 
       <a class="navbar-item is-hidden-desktop" href="" target="_blank">

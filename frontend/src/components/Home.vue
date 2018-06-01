@@ -2,7 +2,7 @@
   <div>
     <br>
     <br>
-    <section class="section">
+    <section class="section" v-if="!!event._id">
       <div class="container">
         <div class="columns">
           <div class="column">
@@ -39,7 +39,20 @@
         </div>
       </div>
     </section>
-    <event :showEventSelect="showSelectEvent" @closeEventSelect="hideEventModal"></event>
+    <section class="section" v-else>
+      <div class="container">
+        <div class="columns">
+          <div class="column"></div>
+          <div class="column is-half">
+            <div class="notification">
+              <h2 class="title is-3 has-text-centered">  Please select an event to continue. </h2>
+            </div>
+          </div>
+          <div class="column"></div>
+        </div>
+      </div>
+    </section>
+    <!-- <event :showEventSelect="showSelectEvent" @closeEventSelect="hideEventModal"></event> -->
   </div>
 </template>
 <script>
@@ -59,7 +72,7 @@
       event,
     },
     computed: {
-      ...mapGetters(['events']),
+      ...mapGetters(['event']),
       events() {
         return this.$store.getters.events;
       },

@@ -52,13 +52,17 @@
 </template>
 <script>
   import admindefault from '../parts/AdminDefault';
-  import newevent from '../parts/NewEvent';
-  import buildevent from '../parts/events/BuildEvent';
-  import newteam from '../parts/teams/NewTeam';
-  import teams from '../parts/teams/ManageTeams';
-  import newjudge from '../parts/judges/NewJudge';
-  import judges from '../parts/judges/ManageJudges';
-  import viewevent from '../parts/events/ViewEvent';
+  // events
+  import newevent from './events/NewEvent';
+  import buildevent from './events/BuildEvent';
+  import viewevent from './events/ViewEvent';
+  // teams
+  import newteam from './teams/NewTeam';
+  import teams from './teams/ManageTeams';
+  // judges
+  import newjudge from './judges/NewJudge';
+  import judges from './judges/ManageJudges';
+
 
   export default {
     data() {

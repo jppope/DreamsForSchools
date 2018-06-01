@@ -2,7 +2,14 @@
   <div>
       <div class="card">
         <div class="card-content">
-            <h2 class="title is-3">{{ event.name }}</h2>
+            <h2 class="title is-3">{{ event.name }}
+              <span class="button is-pulled-right">
+                <span class="icon">
+                  <i class="fa fa-pencil"></i>
+                </span>&nbsp;
+                Edit
+              </span>
+            </h2>
             <h3 class="title is-4">Teams</h3>
             <ul>
               <li v-for="team in event.teams">
