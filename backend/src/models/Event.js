@@ -9,6 +9,7 @@ let EventSchema = new mongoose.Schema({
     type: Date,
   },
   teams: [{}],
+  judges: [{}],
   scores: [{}],
 });
 

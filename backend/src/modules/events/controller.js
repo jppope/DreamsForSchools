@@ -37,6 +37,50 @@ export async function updateEvent(ctx) {
   }
 }
 
+export async function addEventTeam(ctx) {
+    const eventId = ctx.params.id
+    const team = ctx.request.body.team;
+    await Event.findByIdAndUpdate({
+      _id: eventId
+    }, {
+      $push: {
+        teams: team
+      }
+    }, {
+      upsert: true,
+      new: true
+    });
+
+    ctx.body = {
+      status_code: 200
+    }
+}
+
+export async function addEventJudge(ctx) {
+    const eventId = ctx.params.id
+    const judge = ctx.request.body.judge;
+    console.log(judge)
+    await Event.findByIdAndUpdate({
+      _id: eventId
+    }, {
+      $push: {
+        judges: judge
+      }
+    }, {
+      upsert: true,
+      new: true
+    });
+
+    ctx.body = {
+      status_code: 200
+    }
+
+}
+
+
+
+
+
 export async function addScore(ctx) {
   const score = ctx.request.body.evaluation;
   const eventId = ctx.params.id

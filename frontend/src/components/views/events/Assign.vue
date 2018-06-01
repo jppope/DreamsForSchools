@@ -3,6 +3,9 @@
     <div class="container">
       <div class="columns">
         <div class="column">
+          <h2 class="title is-3">
+            Assign Judges
+          </h2>
           <div class="field has-addons is-pulled-right">
             <div class="control is-expanded">
               <div class="select is-fullwidth">
@@ -32,7 +35,7 @@
             <tr v-for="team in event.teams">
               <td>{{ team.team_name }}</td>
               <td>
-                <span v-for="judge in team.judges">{{judge.name}}, </span>
+                <span v-for="judge in team.judges">{{ judge.name }}, </span>
               </td>
             </tr>
             </tbody>

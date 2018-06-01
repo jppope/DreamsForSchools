@@ -15,7 +15,7 @@
               </tr>
             </thead>
             <tbody>
-            <tr v-for="team in teamsList">
+            <tr v-for="team in event.teams">
               <td>{{ team.team_name }}</td>
               <td>{{ team.mentor }}</td>
               <td><a class="button is-small is-info" @click="addTeam(team)">Add Team</a></td>

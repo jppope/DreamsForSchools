@@ -20,7 +20,7 @@
           </div>
         </div>
         <div class="field">
-          <div class="control ">
+          <div class="control">
             <label class="label">Select Event</label>
             <div class="select" >
               <select v-model="team.event" placeholder="select event">
@@ -31,7 +31,7 @@
             </div>
           </div>
         </div>
-        <button class="button is-info is-pulled-right" @click.prevent="createTeam">Create New team</button>
+        <button class="button is-info is-pulled-right" @click.prevent="teamGeneration">Create New team</button>
         <br>
       </div>
     </div>
@@ -53,15 +53,29 @@
       };
     },
     computed: {
-      ...mapGetters(['events']),
+      ...mapGetters(['event', 'events']),
     },
     methods: {
+      teamGeneration() {
+        Promise.all([this.createTeam(), this.createEventTeam()])
+          .then(() => this.$router.push('home'));
+      },
       createTeam() {
-        axios.post('http://localhost:5000/teams', { team: this.team })
-          .then((response) => {
-            // eslint-disable-next-line
-            console.log(response.data);
-          });
+        return new Promise((resolve, reject) => {
+          axios.post('http://localhost:5000/teams', { team: this.team })
+            .then(() => resolve())
+            .catch(err => reject(err));
+        });
+      },
+      createEventTeam() {
+        return new Promise((resolve, reject) => {
+          // eslint-disable-next-line
+          const id = this.event._id;
+          console.log(id);
+          axios.put(`http://localhost:5000/event/${id}/team`, { team: this.team })
+            .then(() => resolve())
+            .catch(err => reject(err));
+        });
       },
     },
   };

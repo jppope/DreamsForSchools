@@ -10,7 +10,7 @@
 </template>
 <script>
   import { mapGetters } from 'vuex';
-  import addteams from './AddTeams';
+  // import addteams from './AddTeams';
   import assign from './Assign';
   import review from './ReviewAssignments';
 
@@ -18,11 +18,11 @@
     name: 'build',
     data() {
       return {
-        componentName: 'addteams',
+        componentName: 'assign',
       };
     },
     components: {
-      addteams,
+      // addteams,
       assign,
       review,
     },

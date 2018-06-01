@@ -1,4 +1,5 @@
 import Team from '../../models/Team'
+import { ADDRGETNETWORKPARAMS } from 'dns';
 
 export async function getTeams(ctx) {
   const teams = await Team.find({})
@@ -18,6 +19,9 @@ export async function createTeam(ctx) {
   }
 }
 
+export async function addTeamToEvent(ctx) {
+
+}
 
 export async function deleteTeam(ctx) {
   await Team.remove({ _id: ctx.params.id })

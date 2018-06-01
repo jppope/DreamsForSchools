@@ -19,7 +19,7 @@
               </div>
             </div>
           </div>
-        <button class="button is-info is-pulled-right" @click.prevent="createJudge">Create New judge</button>
+        <button class="button is-info is-pulled-right" @click.prevent="judgeGeneration">Create New judge</button>
         <br>
       </div>
     </div>
@@ -28,7 +28,6 @@
   import axios from 'axios';
   import { mapGetters, mapActions } from 'vuex';
   // import router from '../../../router/index';
-
 
   export default {
     name: 'newjudge',
@@ -41,15 +40,29 @@
       };
     },
     computed: {
-      ...mapGetters(['events']),
+      ...mapGetters(['events', 'event']),
     },
     methods: {
       ...mapActions(['getEvents']),
+      judgeGeneration() {
+        Promise.all([this.createJudge(), this.createEventJudge()])
+          .then(() => this.$router.push('home'));
+      },
       createJudge() {
-        axios.post('http://localhost:5000/judges', { judge: this.judge })
-          .then(() => {
-            this.$router.push('home');
-          });
+        return new Promise((resolve, reject) => {
+          axios.post('http://localhost:5000/judges', { judge: this.judge })
+            .then(() => resolve())
+            .catch(err => reject(err));
+        });
+      },
+      createEventJudge() {
+        return new Promise((resolve, reject) => {
+          // eslint-disable-next-line
+          const id = this.event._id;
+          axios.put(`http://localhost:5000/event/${id}/judge`, { judge: this.judge })
+            .then(() => resolve())
+            .catch(err => reject(err));
+        });
       },
     },
     mounted() {

@@ -31,6 +31,24 @@ export default [
   },
     {
       method: 'PUT',
+      route: '/:id/team',
+      handlers: [
+        // ensureUser,
+        // user.getUser,
+        event.addEventTeam
+      ]
+    },
+    {
+      method: 'PUT',
+      route: '/:id/judge',
+      handlers: [
+        // ensureUser,
+        // user.getUser,
+        event.addEventJudge
+      ]
+    },
+    {
+      method: 'PUT',
       route: '/:id/score',
       handlers: [
         // ensureUser,
