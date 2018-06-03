@@ -4,27 +4,27 @@
       <thead>
         <tr>
           <th>Judge Name</th>
-          <th>Teams</th>
+          <th>Events</th>
           <th>Edit</th>
           <th>Delete</th>
         </tr>
       </thead>
       <tbody>
-      <tr v-for="judge in judgesList">
+      <tr v-for="(judge, index) in judgesList">
         <td>{{ judge.name }}</td>
         <td>
           <span v-for="event in judge.events">
             <small>
-              event,
+              {{ event }}
             </small>
           </span>
         </td>
-        <td><a class="button is-small is-info">Edit</a></td>
+        <td><a class="button is-small is-info" @click="showJudge(index)">Edit</a></td>
         <td><a class="button is-small is-danger" @click.prevent="deleteJudge(judge._id)">Delete</a></td>
       </tr>
       </tbody>
     </table>
-    <edit></edit>
+    <edit :showModal="showModal" :judge="selectedJudge" @close="closeModal"></edit>
   </div>
 </template>
 <script>
@@ -33,6 +33,12 @@
   import edit from './EditJudges';
 
   export default {
+    data() {
+      return {
+        showModal: false,
+        selectedJudge: {},
+      };
+    },
     components: {
       edit,
     },
@@ -41,9 +47,16 @@
     },
     methods: {
       ...mapActions(['getJudges']),
+      showJudge(index) {
+        this.selectedJudge = this.judgesList[index];
+        this.showModal = true;
+      },
       deleteJudge(judge) {
         axios.delete(`http://localhost:5000/judges/${judge}`)
           .then(() => { this.$router.push('home'); });
+      },
+      closeModal() {
+        this.showModal = false;
       },
     },
     mounted() {
