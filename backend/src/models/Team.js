@@ -19,7 +19,7 @@ let TeamSchema = new mongoose.Schema({
   banner_votes: {
     type: Number,
     default: 0
-  }
+  },
   event: {
     type: String,
     trim: true
