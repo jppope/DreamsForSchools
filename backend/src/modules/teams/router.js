@@ -27,5 +27,12 @@ export default [
       // ensureUser,
       teams.deleteTeam,
     ]
+  },
+  {
+    method: 'GET',
+    route: '/top_banner',
+    handlers: [
+      teams.topTeamBanner,
+    ]
   }
 ]

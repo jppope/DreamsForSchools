@@ -23,6 +23,11 @@ export async function addTeamToEvent(ctx) {
 
 }
 
+export async function topTeamBanner(ctx) {
+  const top_banner = await Team.find().sort({banner_votes: -1}).limit(1);
+  ctx.body = { top_banner };
+}
+
 export async function deleteTeam(ctx) {
   await Team.remove({ _id: ctx.params.id })
   ctx.status = 200
