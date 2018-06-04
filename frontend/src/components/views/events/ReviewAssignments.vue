@@ -12,7 +12,7 @@
               </tr>
             </thead>
             <tbody>
-            <tr v-for="team in event.teams">
+            <tr v-for="(team, index) in event.teams">
               <td>{{ team.team_name }}</td>
               <td>
                 <span v-for="judge in team.judges">
@@ -20,7 +20,7 @@
                 </span>
               </td>
               <td>
-                <a class="button is-primary is-small" @click="EditAssignment">edit</a>
+                <a class="button is-primary is-small" @click="EditAssignment(index)">edit</a>
               </td>
             </tr>
             </tbody>
@@ -53,7 +53,8 @@
     },
     methods: {
       ...mapActions(['completeJudgeAssignment', 'eventJudges', 'numberOfJudges']),
-      EditAssignment() {
+      EditAssignment(index) {
+        this.selectedTeam = this.event.teams[index];
         this.showModal = !this.showModal;
       },
     },

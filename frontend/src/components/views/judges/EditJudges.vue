@@ -17,7 +17,7 @@
         <h3 class="">Assigned Events</h3>
         <div class="tag is-medium is-info" v-for="(eventInfo, index) in judge.events">
           {{ getEventName(eventInfo) }}&nbsp;
-          <button class="delete is-small"></button>
+          <button class="delete is-small" @click.prevent="removeEvent(index)"></button>
         </div>
         <br>&nbsp;
         <h3 class="title is-4">Add Another Event</h3>
@@ -73,6 +73,9 @@
             // eslint-disable-next-line
             this.judge.events.push(this.selectedEvent._id);
           });
+      },
+      removeEvent() {
+
       },
       updateEvent() {
         this.$emit('close');
