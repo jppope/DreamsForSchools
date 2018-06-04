@@ -15,7 +15,7 @@
         <td>
           <span v-for="event in judge.events">
             <small>
-              {{ event }}
+              {{ event }},
             </small>
           </span>
         </td>
