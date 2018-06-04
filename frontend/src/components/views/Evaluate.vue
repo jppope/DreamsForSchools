@@ -156,6 +156,15 @@
         axios.put(`http://127.0.0.1:5000/event/${this.event._id}/score`, { evaluation })
           .then((response) => {
             console.log(response.data);
+            this.eval = {
+              one: 0,
+              two: 0,
+              three: 0,
+              four: 0,
+              five: 0,
+              six: 0,
+              seven: 0,
+            },
             this.closeModal();
           })
       },

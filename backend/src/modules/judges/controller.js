@@ -45,12 +45,31 @@ export async function getJudge (ctx, next) {
 
 export async function updateJudge (ctx) {
   const judge = ctx.body.judge
-
   Object.assign(judge, ctx.request.body.judge)
-
   await judge.save()
   ctx.body = { judge }
 }
+
+export async function changeEvents(ctx) {
+  const judge = ctx.request.body.judge;
+  const JudgeId = ctx.params.id;
+  await Judge.findByIdAndUpdate({ _id: JudgeId },
+  {
+    $set: {
+    events: judge.events
+    }
+  },
+  {
+    upsert: true,
+    new: true
+  })
+
+  ctx.body = {
+    judge
+  }
+}
+
+
 
 export async function deleteJudge (ctx) {
     await Judge.remove({ _id: ctx.params.id });

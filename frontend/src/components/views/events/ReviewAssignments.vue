@@ -30,7 +30,7 @@
         <div class="column"></div>
       </div>
     </div>
-    <edit :show="showModal" :team="selectedTeam" @close="showModal = !showModal"></edit>
+    <edit :show="showModal" :team="selectedTeam" :location="location" @close="showModal = !showModal"></edit>
   </section>
 </template>
 <script>
@@ -42,6 +42,7 @@
       return {
         showModal: false,
         selectedTeam: {},
+        location: 0,
         judgeNumber: 0,
       };
     },
@@ -55,6 +56,7 @@
       ...mapActions(['completeJudgeAssignment', 'eventJudges', 'numberOfJudges']),
       EditAssignment(index) {
         this.selectedTeam = this.event.teams[index];
+        this.location = index;
         this.showModal = !this.showModal;
       },
     },

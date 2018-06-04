@@ -68,14 +68,15 @@
       addEvent() {
         // eslint-disable-next-line
         const id = this.judge._id;
-        axios.put(`http://localhost:5000/judges/${id}`, { judge: this.judge })
-          .then(() => {
+        axios.put(`http://localhost:5000/judges/${id}/event-update`, { judge: this.judge })
+          .then((res) => {
+            // eslint-disable-next-line
+            console.log(res.data);
             // eslint-disable-next-line
             this.judge.events.push(this.selectedEvent._id);
           });
       },
       removeEvent() {
-
       },
       updateEvent() {
         this.$emit('close');

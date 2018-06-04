@@ -33,6 +33,13 @@ export default [
   },
   {
     method: 'PUT',
+    route: '/:id/event-update',
+    handlers: [
+      judge.changeEvents
+    ]
+  },
+  {
+    method: 'PUT',
     route: '/:id',
     handlers: [
       judge.getJudge,
