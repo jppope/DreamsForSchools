@@ -15,7 +15,7 @@
                     <a href="#" class="card-header-icon" aria-label="more options" @click="showJudgeList = !showJudgeList">
                       Please Select Your Name
                       <span class="icon">
-                        <i class="fa fa-angle-down" aria-hidden="true"></i>
+                        <i class="fa fa-angle-down"></i>
                       </span>
                     </a>
                   </div>
@@ -127,6 +127,7 @@
     methods: {
       ...mapActions(['getJudges']),
       setJudgeFilter(judge) {
+        this.showJudgeList = !this.showJudgeList;
         this.judgeFilter = judge;
       },
       judgeTeam(team) {
