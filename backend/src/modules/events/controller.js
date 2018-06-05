@@ -97,10 +97,21 @@ export async function addScore(ctx) {
 }
 
 export async function updateScore(ctx){
-  const score = ctx.request.body;
-  const eventId = ctx.params.id;
-  console.log(score,eventId)
+  const scores = ctx.request.body.scores;
+  const eventId = ctx.params.id
+  await Event.findByIdAndUpdate({
+    _id: eventId
+  }, {
+    $set: {
+      scores: scores
+    }
+  }, {
+    upsert: true,
+    new: true
+  });
+
   ctx.body = {
     status_code: 200
   }
+
 }

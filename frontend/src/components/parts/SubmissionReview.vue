@@ -123,7 +123,7 @@
           </div>
       </section>
       <footer class="modal-card-foot">
-        <button class="button is-success" @click.prevent="saveUpdate">Submit</button>
+        <button class="button is-success" @click.prevent="closeModal">Submit</button>
         <button class="button" @click="closeModal">Cancel</button>
       </footer>
     </div>
@@ -131,7 +131,7 @@
 </div>
 </template>
 <script>
-  import axios from 'axios';
+  // import axios from 'axios';
 
   export default {
     props: ['score', 'showModal', 'location', 'eventId'],
@@ -141,16 +141,17 @@
       },
       saveUpdate() {
         // eslint-disable-next-line
-        const scoreIndex = this.location;
-        const score = this.score;
-        const payload = {
-          scoreIndex,
-          score,
-        };
-        axios.put(`http://localhost:5000/event/${this.eventId}/update-score`, payload)
-          .then(() => {
-            this.$emit('close');
-          });
+        // const scoreIndex = this.location;
+        // const score = this.score;
+        // const payload = {
+        //   scoreIndex,
+        //   score,
+        // };
+        // axios.put(`http://localhost:5000/event/${this.eventId}/update-score`, payload)
+        //   .then(() => {
+
+        //   });
+        this.$emit('close');
       },
     },
   };

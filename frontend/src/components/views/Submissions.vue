@@ -1,27 +1,36 @@
 <template>
   <div>
+    <br>
+    <br>
     <div class="columns">
       <div class="column"></div>
       <div class="column is-three-quarters">
-        <table class="table is-fullwidth">
-          <thead>
-            <tr>
-              <th>Judge</th>
-              <th>Team</th>
-              <th>Edit</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr v-for="(score, index) in event.scores">
-              <td>{{ score.judge.name }} </td>
-              <td>{{ score.team.team_name }} </td>
-              <!-- <td>{{ score.score }} </td> -->
-              <td>
-                <button class="button is-small is-info" @click="review(score, index)">Edit</button>
-              </td>
-            </tr>
-          </tbody>
-        </table>
+        <div class="card">
+          <div class="card-body">
+            <table class="table is-fullwidth">
+              <thead>
+                <tr>
+                  <th>Judge</th>
+                  <th>Team</th>
+                  <th>Edit</th>
+                </tr>
+              </thead>
+              <tfoot>
+              </tfoot>
+              <tbody>
+                <tr v-for="(score, index) in event.scores">
+                  <td>{{ score.judge.name }} </td>
+                  <td>{{ score.team.team_name }} </td>
+                  <td>{{ score.score }} </td>
+                  <td>
+                    <button class="button is-small is-info" @click="review(score, index)">Edit</button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+            <button class="button is-pulled-right" @click="saveScores">Save Changes</button>
+          </div>
+        </div>
       </div>
       <div class="column"></div>
     </div>
@@ -29,6 +38,7 @@
   </div>
 </template>
 <script>
+  import axios from 'axios';
   import { mapGetters } from 'vuex';
   import subreview from '../parts/SubmissionReview';
 
@@ -66,6 +76,18 @@
         this.location = index;
         this.selectedScore = score;
         this.showModal = true;
+      },
+      saveScores() {
+        // eslint-disable-next-line
+        const scoreIndex = this.location;
+        const scores = this.event.scores;
+        const payload = {
+          scoreIndex,
+          scores,
+        };
+        // eslint-disable-next-line
+        axios.put(`http://localhost:5000/event/${this.event._id}/update-score`, payload)
+          .then(() => {});
       },
     },
   };
