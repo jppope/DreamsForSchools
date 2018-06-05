@@ -58,9 +58,9 @@
                 </div>
               </div>
               <footer class="card-footer">
-                <a href="#" class="card-footer-item">Save</a>
-                <a href="#" class="card-footer-item">Edit</a>
-                <a href="#" class="card-footer-item">Delete</a>
+                <router-link class="card-footer-item" to="/submissions">
+                  Edit Submission
+                </router-link>
               </footer>
             </div>
             </div>

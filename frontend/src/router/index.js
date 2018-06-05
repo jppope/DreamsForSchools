@@ -4,6 +4,7 @@ import Home from '@/components/Home';
 import Mentor from '@/components/views/Mentor';
 import Admin from '@/components/views/Admin';
 import Judge from '@/components/views/Judge';
+import Submissions from '@/components/views/Submissions';
 import Results from '@/components/views/Results';
 import Auth from '@/components/auth/Authentication';
 import Confirm from '@/components/auth/Confirm';
@@ -40,6 +41,12 @@ const router = new Router({
       path: '/results',
       name: 'results',
       component: Results,
+    },
+    {
+      path: '/submissions',
+      name: 'submissions',
+      component: Submissions,
+
     },
     {
       path: '/login',

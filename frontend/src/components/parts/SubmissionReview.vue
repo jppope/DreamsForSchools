@@ -1,10 +1,10 @@
 <template>
-<div>
-  <div class="modal" :class="{ 'is-active': show }">
+  <div>
+  <div class="modal" :class="{ 'is-active': showModal }">
     <div class="modal-background"></div>
     <div class="modal-card">
       <header class="modal-card-head">
-        <p class="modal-card-title">Evaluate {{ team.team_name }} </p>
+        <p class="modal-card-title">score</p>
         <button class="delete" aria-label="close" @click="closeModal"></button>
       </header>
       <section class="modal-card-body">
@@ -16,11 +16,11 @@
               </label>
             </div>
             <div class="column is-2">
-            <div class="select">
-              <select v-model="eval.one">
-                <option v-for="n in 15">{{ n }}</option>
-              </select>
-            </div>
+              <div class="select">
+                <select v-model="score.score.one">
+                  <option v-for="n in 15">{{ n }}</option>
+                </select>
+              </div>
             </div>
           </div>
           <div class="control columns">
@@ -31,7 +31,7 @@
             </div>
             <div class="column is-2">
             <div class="select" >
-              <select v-model="eval.two">
+              <select v-model="score.score.two">
                 <option v-for="n in 15">{{ n }}</option>
               </select>
             </div>
@@ -45,7 +45,7 @@
             </div>
             <div class="column is-2">
             <div class="select">
-              <select v-model="eval.three">
+              <select v-model="score.score.three">
                 <option v-for="n in 15">{{ n }}</option>
               </select>
             </div>
@@ -59,7 +59,7 @@
             </div>
             <div class="column is-2">
             <div class="select">
-              <select v-model="eval.four">
+              <select v-model="score.score.four">
                 <option v-for="n in 15">{{ n }}</option>
               </select>
             </div>
@@ -73,7 +73,7 @@
             </div>
             <div class="column is-2">
             <div class="select">
-              <select v-model="eval.five">
+              <select v-model="score.score.five">
                 <option v-for="n in 10">{{ n }}</option>
               </select>
             </div>
@@ -87,7 +87,7 @@
             </div>
             <div class="column is-2">
             <div class="select">
-              <select v-model="eval.six">
+              <select v-model="score.score.six">
                 <option v-for="n in 10">{{ n }}</option>
               </select>
             </div>
@@ -101,7 +101,7 @@
             </div>
             <div class="column is-2">
             <div class="select">
-              <select v-model="eval.seven">
+              <select v-model="score.score.seven">
                 <option v-for="n in 10">{{ n }}</option>
               </select>
             </div>
@@ -115,7 +115,7 @@
             </div>
             <div class="column is-2">
             <div class="select">
-              <select v-model="eval.eight">
+              <select v-model="score.score.eight">
                 <option v-for="n in 10">{{ n }}</option>
               </select>
             </div>
@@ -123,7 +123,7 @@
           </div>
       </section>
       <footer class="modal-card-foot">
-        <button class="button is-success" @click="saveEvaluation">Submit Evaluation</button>
+        <button class="button is-success" @click.prevent="saveUpdate">Submit</button>
         <button class="button" @click="closeModal">Cancel</button>
       </footer>
     </div>
@@ -132,59 +132,26 @@
 </template>
 <script>
   import axios from 'axios';
-  import { mapGetters } from 'vuex';
 
   export default {
-    name: 'evaluate',
-    props: ['show', 'team', 'judge'],
-    data() {
-      return {
-        eval: {
-          one: 0,
-          two: 0,
-          three: 0,
-          four: 0,
-          five: 0,
-          six: 0,
-          seven: 0,
-          eight: 0,
-        },
-      };
-    },
-    computed: {
-      ...mapGetters(['event']),
-    },
+    props: ['score', 'showModal', 'location', 'eventId'],
     methods: {
       closeModal() {
-        this.$emit('close');
+        this.$emit('closeIt');
       },
-      updateTeam() {
-        this.$emit('close');
-      },
-      saveEvaluation() {
-        const evaluation = JSON.parse(JSON.stringify({
-          team: this.team,
-          judge: this.judge,
-          score: this.eval,
-        }));
-        /* eslint-disable*/
-        axios.put(`http://127.0.0.1:5000/event/${this.event._id}/score`, { evaluation })
-          .then((response) => {
-            console.log(response.data);
-            this.eval = {
-              one: 0,
-              two: 0,
-              three: 0,
-              four: 0,
-              five: 0,
-              six: 0,
-              seven: 0,
-              eight: 0,
-            },
-            this.closeModal();
-          })
+      saveUpdate() {
+        // eslint-disable-next-line
+        const scoreIndex = this.location;
+        const score = this.score;
+        const payload = {
+          scoreIndex,
+          score,
+        };
+        axios.put(`http://localhost:5000/event/${this.eventId}/update-score`, payload)
+          .then(() => {
+            this.$emit('close');
+          });
       },
     },
   };
 </script>
-

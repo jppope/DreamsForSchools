@@ -71,7 +71,6 @@
         return new Promise((resolve, reject) => {
           // eslint-disable-next-line
           const id = this.event._id;
-          console.log(id);
           axios.put(`http://localhost:5000/event/${id}/team`, { team: this.team })
             .then(() => resolve())
             .catch(err => reject(err));

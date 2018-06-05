@@ -74,12 +74,7 @@ export async function addEventJudge(ctx) {
     ctx.body = {
       status_code: 200
     }
-
 }
-
-
-
-
 
 export async function addScore(ctx) {
   const score = ctx.request.body.evaluation;
@@ -101,3 +96,11 @@ export async function addScore(ctx) {
   }
 }
 
+export async function updateScore(ctx){
+  const score = ctx.request.body;
+  const eventId = ctx.params.id;
+  console.log(score,eventId)
+  ctx.body = {
+    status_code: 200
+  }
+}

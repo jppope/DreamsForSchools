@@ -29,32 +29,40 @@ export default [
       event.updateEvent
     ]
   },
-    {
-      method: 'PUT',
-      route: '/:id/team',
-      handlers: [
-        // ensureUser,
-        // user.getUser,
-        event.addEventTeam
-      ]
-    },
-    {
-      method: 'PUT',
-      route: '/:id/judge',
-      handlers: [
-        // ensureUser,
-        // user.getUser,
-        event.addEventJudge
-      ]
-    },
-    {
-      method: 'PUT',
-      route: '/:id/score',
-      handlers: [
-        // ensureUser,
-        // user.getUser,
-        event.addScore
-      ]
-    },
-
+  {
+    method: 'PUT',
+    route: '/:id/team',
+    handlers: [
+      // ensureUser,
+      // user.getUser,
+      event.addEventTeam
+    ]
+  },
+  {
+    method: 'PUT',
+    route: '/:id/judge',
+    handlers: [
+      // ensureUser,
+      // user.getUser,
+      event.addEventJudge
+    ]
+  },
+  {
+    method: 'PUT',
+    route: '/:id/score',
+    handlers: [
+      // ensureUser,
+      // user.getUser,
+      event.addScore
+    ]
+  },
+  {
+    method: 'PUT',
+    route: '/:id/update-score',
+    handlers: [
+      // ensureUser,
+      // user.getUser,
+      event.updateScore
+    ]
+  },
 ]
