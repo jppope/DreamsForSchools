@@ -87,7 +87,9 @@
         };
         // eslint-disable-next-line
         axios.put(`http://localhost:5000/event/${this.event._id}/update-score`, payload)
-          .then(() => {});
+          .then(() => {
+            this.$router.push('home');
+          });
       },
     },
   };
