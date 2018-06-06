@@ -26,8 +26,8 @@
 
     <div id="navMenuExample" class="navbar-menu">
       <div class="navbar-end">
-        <div class="navbar-item">Please Select Your Event</div>
-        <div class="navbar-item" v-if="$route.name !== 'login'">
+        <!-- <div class="navbar-item">Please Select Your Event</div> -->
+        <!-- <div class="navbar-item" v-if="$route.name !== 'login'">
           <div class="field">
             <div class="control has-text-centered">
               <div class="select">
@@ -39,7 +39,7 @@
               </div>
             </div>
           </div>
-        </div>
+        </div> -->
         <div class="navbar-item">
           <div class="button is-primary" to="login" v-show="isLoggedIn" @click="logout">
             <span class="icon"><i class="fa fa-user"></i></span>

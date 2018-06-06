@@ -2,7 +2,19 @@
   <aside class="column is-2 aside hero is-fullheight is-hidden-mobile">
     <div>
       <div class="compose has-text-centered">
-        <img src="http://placehold.it/150x50&text=dreamsforschools.org">
+        <div class="item" v-if="$route.name !== 'login'">
+          <div class="field">
+            <div class="control has-text-centered">
+              <div class="select">
+                <select v-model="selectedEvent" @change="updateEvent" placeholder="select event">
+                  <option v-for="event in events" :value="event">
+                    {{ event.name }}
+                  </option>
+                </select>
+              </div>
+            </div>
+          </div>
+        </div>
         <!-- <a class="button is-danger is-block is-bold is-expaned">
           <span class="icon">
             <i class="fa fa-upload"></i>
@@ -36,10 +48,38 @@
           </span>
           <span class="name">Judges</span>
         </router-link>
+
       </div>
     </div>
-</aside>
+  </aside>
 </template>
+<script>
+  import { mapGetters, mapActions } from 'vuex';
+
+  export default {
+    name: 'navigation',
+    data() {
+      return {
+        selectedEvent: {},
+      };
+    },
+    computed: {
+      ...mapGetters(['event', 'isLoggedIn', 'events']),
+      events() {
+        return this.$store.getters.events;
+      },
+    },
+    methods: {
+      ...mapActions(['logout', 'getEvents', 'setEvent']),
+      updateEvent() {
+        this.setEvent(this.selectedEvent);
+      },
+    },
+    created() {
+      this.getEvents();
+    },
+  };
+</script>
 <style>
 
 .aside {
